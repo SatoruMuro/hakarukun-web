@@ -1,0 +1,19 @@
+{
+  "name": "面積ハカルくん",
+  "short_name": "ハカルくん",
+  "description": "写真から皮膚病変の面積を測定するWebアプリ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f2ed",
+  "theme_color": "#f4f2ed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
