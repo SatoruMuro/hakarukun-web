@@ -357,12 +357,12 @@ export default function Home() {
     const width = Math.min(source.width - x, Math.max(2, Math.round(roi.width)));
     const height = Math.min(source.height - y, Math.max(2, Math.round(roi.height)));
     if (width < 10 || height < 10) {
-      setStatus("病変全体と少し周囲の皮膚を含むように、もう少し広く囲んでください。");
+      setStatus("測定対象全体とその周囲を少し含むように、もう少し広く囲んでください。");
       return;
     }
 
     setIsSegmenting(true);
-    setStatus("病変を自動抽出しています。初回は少し時間がかかります…");
+    setStatus("対象領域を自動抽出しています。初回は少し時間がかかります…");
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
     const roiCanvas = document.createElement("canvas");
     roiCanvas.width = width;
@@ -399,7 +399,7 @@ export default function Home() {
       const roiMask = keepLargestComponentAndFillHoles(binary.data, width, height);
       let detected = 0;
       for (const value of roiMask) detected += value ? 1 : 0;
-      if (!detected) throw new Error("病変領域を抽出できませんでした。");
+      if (!detected) throw new Error("対象領域を抽出できませんでした。");
 
       const fullMask = new Uint8Array(imageSize.width * imageSize.height);
       for (let row = 0; row < height; row += 1) {
@@ -415,7 +415,7 @@ export default function Home() {
       setStatus("自動抽出が完了しました。緑の範囲を確認し、必要なら修正してください。");
     } catch (error) {
       console.error(error);
-      setStatus("自動抽出に失敗しました。病変の周囲を少し広めに囲み直してください。");
+      setStatus("自動抽出に失敗しました。測定対象の周囲を少し広めに囲み直してください。");
     } finally {
       kernel?.delete();
       binary?.delete();
@@ -568,7 +568,7 @@ export default function Home() {
     setStatus(
       completedMode === "crop"
         ? "この範囲で切り出してよければ「トリミングを適用」を押してください。"
-        : "病変範囲を設定しました。自動抽出を開始します…",
+        : "測定対象の範囲を設定しました。自動抽出を開始します…",
     );
     if (completedMode === "roi") void runGrabCut(rect);
   }
@@ -618,7 +618,7 @@ export default function Home() {
     setSelectionRect(null);
     setSelectionKind(null);
     setMode(null);
-    setStatus(mmPerPx ? "病変範囲を囲む準備ができました。" : "基準線を設定してください。");
+    setStatus(mmPerPx ? "測定対象を囲む準備ができました。" : "基準線を設定してください。");
   }
 
   function beginRoi() {
@@ -626,7 +626,7 @@ export default function Home() {
     setSelectionRect(null);
     setSelectionKind("roi");
     setMode("roi");
-    setStatus("病変全体と、少し周囲の皮膚を含めてドラッグしてください。");
+    setStatus("測定対象全体と、その周囲を少し含めてドラッグしてください。");
   }
 
   function beginRefine(nextMode: "add" | "erase") {
@@ -634,7 +634,7 @@ export default function Home() {
     setSelectionRect(null);
     setSelectionKind(null);
     setMode(nextMode);
-    setStatus(nextMode === "add" ? "病変に追加したい部分を指で塗ってください。" : "病変から除外したい部分を指でなぞってください。");
+    setStatus(nextMode === "add" ? "対象領域に追加したい部分を指で塗ってください。" : "対象領域から除外したい部分を指でなぞってください。");
   }
 
   function finishRefine() {
@@ -676,7 +676,7 @@ export default function Home() {
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">H</span>
           <div>
-            <p className="brand-kicker">皮膚病変面積測定</p>
+            <p className="brand-kicker">画像面積測定</p>
             <h1>面積ハカルくん</h1>
           </div>
         </div>
@@ -684,7 +684,7 @@ export default function Home() {
       </header>
 
       <section className="workflow" aria-label="測定手順">
-        {["写真", "基準", "病変", "結果"].map((label, index) => (
+        {["写真", "基準", "対象", "結果"].map((label, index) => (
           <div className={`workflow-step ${index === currentStep ? "current" : ""} ${index < currentStep ? "done" : ""}`} key={label}>
             <span>{index < currentStep ? "✓" : index + 1}</span>
             <small>{label}</small>
@@ -717,8 +717,8 @@ export default function Home() {
             ) : (
               <div className="empty-state">
                 <div className="camera-glyph" aria-hidden="true"><span /></div>
-                <h2>病変と基準物を一緒に撮影</h2>
-                <p>定規などを皮膚と同じ平面に置き、できるだけ真上から撮影してください。</p>
+                <h2>測定対象と基準物を一緒に撮影</h2>
+                <p>定規などの基準物を測定対象と同じ平面に置き、できるだけ真上から撮影してください。</p>
                 <div className="photo-actions">
                   <button className="primary-button" type="button" onClick={() => cameraInputRef.current?.click()} disabled={isPreparing}>
                     {isPreparing ? "準備中…" : "写真を撮る"}
@@ -732,7 +732,7 @@ export default function Home() {
             {isSegmenting && (
               <div className="processing-overlay" aria-live="polite">
                 <span className="spinner" aria-hidden="true" />
-                <b>病変を抽出しています</b>
+                <b>対象領域を抽出しています</b>
                 <small>画面を閉じずにお待ちください</small>
               </div>
             )}
@@ -750,9 +750,9 @@ export default function Home() {
               <span className="guide-number">1</span>
               <h2>撮影のポイント</h2>
               <ul>
-                <li>病変と基準物を同じ平面に置く</li>
+                <li>測定対象と基準物を同じ平面に置く</li>
                 <li>影や反射を避けて明るく撮る</li>
-                <li>カメラを皮膚面に対して正対させる</li>
+                <li>カメラを測定面に対して正対させる</li>
               </ul>
             </div>
           ) : (
@@ -773,11 +773,11 @@ export default function Home() {
               <div className={`control-card ${!mmPerPx ? "disabled-card" : ""}`}>
                 <div className="control-title-row">
                   <span className={`control-number ${hasMask ? "complete" : ""}`}>{hasMask ? "✓" : "2"}</span>
-                  <div><p>病変指定</p><h2>測定範囲を囲む</h2></div>
+                  <div><p>対象指定</p><h2>測定範囲を囲む</h2></div>
                 </div>
-                <p className="control-copy">病変の外側に少し正常皮膚を含めて囲みます。</p>
+                <p className="control-copy">測定対象の外側を少し含めて囲みます。</p>
                 <button className="primary-button full" type="button" onClick={hasMask ? restartSegmentation : beginRoi} disabled={!mmPerPx || isSegmenting}>
-                  {hasMask ? "病変範囲を囲み直す" : isSegmenting ? "自動抽出中…" : "病変範囲を囲む"}
+                  {hasMask ? "測定対象を囲み直す" : isSegmenting ? "自動抽出中…" : "測定対象を囲む"}
                 </button>
               </div>
 
@@ -810,7 +810,7 @@ export default function Home() {
         </aside>
       </div>
 
-      <footer>本ツールの測定値は参考値です。診断や治療方針の決定には使用しないでください。</footer>
+      <footer>本ツールの測定値は参考値です。精密測定、診断、安全性・品質などの重要な判断には使用しないでください。</footer>
     </main>
   );
 }

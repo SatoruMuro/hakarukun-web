@@ -5,7 +5,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   title: "面積ハカルくん",
-  description: "写真から皮膚病変の面積を測定する、iPhone対応Webアプリ",
+  description: "写真から任意の対象領域の面積を測定する、iPhone対応Webアプリ",
   manifest: `${basePath}/manifest.webmanifest`,
   appleWebApp: {
     capable: true,
