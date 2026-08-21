@@ -6,20 +6,21 @@ export default function VolumePage() {
     <main className="volume-shell">
       <nav className="volume-nav" aria-label="ページ移動">
         <a className="volume-back" href={`${basePath}/`}>← 面積ハカルくんへ</a>
-        <span className="prototype-badge">COLAB 試作版</span>
+        <span className="prototype-badge">WEB・COLAB 試作版</span>
       </nav>
 
       <section className="volume-hero">
         <div className="volume-hero-copy">
-          <p className="volume-overline">動画から立体を測定</p>
+          <p className="volume-overline">3Dモデル・動画から立体を測定</p>
           <h1>体積ハカルくん</h1>
           <p className="volume-lead">
-            iPhoneで対象物の周囲を一周撮影し、複数方向の輪郭から3D形状と体積を推定します。
-            専用サーバーは不要で、計算はGoogle Colab上で実行します。
+            Scaniverseなどで作成した3Dモデルを切り出して測る方法と、
+            iPhone動画からGoogle Colabで3D形状を推定する方法を無料で試せます。
           </p>
           <div className="volume-actions">
-            <a className="volume-action" href={colabUrl} target="_blank" rel="noreferrer">Google Colabで計算する ↗</a>
-            <a className="volume-action secondary" href={`${basePath}/volume/volume-marker-board-a4.pdf`} target="_blank">A4マーカーボードを開く</a>
+            <a className="volume-action" href={`${basePath}/volume/mesh/`}>3Dモデルから測る</a>
+            <a className="volume-action secondary" href={colabUrl} target="_blank" rel="noreferrer">動画から作る（Colab）↗</a>
+            <a className="volume-action secondary" href={`${basePath}/volume/volume-marker-board-a4.pdf`} target="_blank" rel="noreferrer">A4ボードを開く</a>
           </div>
         </div>
         <div className="volume-result-card" aria-label="出力例">
@@ -27,45 +28,45 @@ export default function VolumePage() {
             <p>OUTPUT</p>
             <strong>cm³ <span>= mL</span></strong>
           </div>
-          <small>体積、推定外形寸法、高さ別断面積、3Dモデルを出力します。</small>
+          <small>GLBの切断面と対象範囲を調整し、体積と推定外形寸法を端末内で計算します。</small>
         </div>
       </section>
 
       <section className="volume-section">
         <div className="volume-section-heading">
-          <p>HOW TO USE</p>
-          <h2>3つの手順で試せます</h2>
+          <p>MESH WORKFLOW</p>
+          <h2>3Dモデルなら3つの手順</h2>
         </div>
         <div className="volume-steps">
           <article className="volume-step-card">
             <span>1</span>
-            <h3>ボードを100%で印刷</h3>
-            <p>A4・実際のサイズで印刷し、下部の確認線が定規で100 mmになることを確かめます。</p>
+            <h3>無料アプリでスキャン</h3>
+            <p>Scaniverseなどで対象物の周囲を撮影し、Gaussian SplatではなくMeshを作成します。</p>
           </article>
           <article className="volume-step-card">
             <span>2</span>
-            <h3>対象物の周囲を撮影</h3>
-            <p>対象物を中央に置き、ボード全体を画面に残しながら、斜め上から10〜20秒で一周します。</p>
+            <h3>GLBで書き出す</h3>
+            <p>モデルのエクスポート形式はGLBを選びます。形状、実寸スケール、色情報を1ファイルで扱えます。</p>
           </article>
           <article className="volume-step-card">
             <span>3</span>
-            <h3>輪郭を確認して計算</h3>
-            <p>番号付きの緑色マスクを確認し、不良フレームを除外してから体積と3Dモデルを計算します。</p>
+            <h3>机面と範囲を調整</h3>
+            <p>黄色い切断面と緑の枠を対象物に合わせ、底面を閉じた推定体積を確認します。</p>
           </article>
         </div>
       </section>
 
       <aside className="volume-notice">
         <div>
-          <h2>動画とプライバシー</h2>
-          <p>面積測定とは異なり、選んだ動画は計算のためGoogle Colabの一時実行環境へアップロードされます。機密情報や個人を特定できる映像は使用しないでください。</p>
+          <h2>GLBとプライバシー</h2>
+          <p>Mesh版ではGLBをブラウザ内だけで処理し、サーバーへ送信しません。動画版では計算のためGoogle Colabの一時実行環境へアップロードされます。</p>
         </div>
         <div>
           <h2>試作版の制限</h2>
           <ul>
-            <li>静止した不透明な小物を対象にしています。</li>
-            <li>明らかな不良マスクは自動除外しますが、計算前に目視確認が必要です。</li>
-            <li>見えない凹みは埋まった形になり、体積を大きく推定する場合があります。</li>
+            <li>Mesh版は、まず平面上に置いた静止物を対象にしています。</li>
+            <li>スキャンの欠損、深い凹み、オーバーハングは誤差要因になります。</li>
+            <li>動画版を使う場合はA4マーカーボードが必要です。</li>
             <li>精密測定や診断、安全性・品質の判断には使用できません。</li>
           </ul>
         </div>

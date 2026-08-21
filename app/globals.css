@@ -78,6 +78,75 @@ button { -webkit-tap-highlight-color: transparent; }
 .volume-notice p, .volume-notice ul { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
 .volume-notice ul { padding-left: 18px; }
 
+.mesh-shell { width: min(1260px, 100%); min-height: 100vh; margin: 0 auto; padding: 24px 28px 42px; }
+.mesh-badge { border-color: #bcdcd0; background: #eef9f4; color: var(--green-dark); }
+.mesh-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 30px 0 20px; }
+.mesh-heading h1 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: clamp(30px, 4vw, 46px); font-weight: 650; line-height: 1.25; }
+.mesh-heading > div > p:last-child { max-width: 690px; margin: 13px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.mesh-file-button { min-height: 47px; flex: 0 0 auto; border: 1px solid var(--green); border-radius: 13px; background: var(--green); padding: 0 19px; color: white; font-size: 13px; font-weight: 850; box-shadow: 0 8px 18px rgba(8,119,95,.18); }
+.mesh-file-button:disabled { opacity: .55; }
+.mesh-workspace { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(310px, .65fr); gap: 18px; align-items: start; }
+.mesh-view-card, .mesh-control-card, .mesh-result, .mesh-method-note { border: 1px solid rgba(210,210,202,.86); background: rgba(255,254,250,.94); box-shadow: var(--shadow); }
+.mesh-view-card { overflow: hidden; border-radius: 24px; }
+.mesh-view-heading { display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: 18px; padding: 13px 18px; border-bottom: 1px solid var(--line); }
+.mesh-view-heading p { margin: 0 0 3px; color: var(--green); font-size: 9px; font-weight: 850; letter-spacing: .14em; }
+.mesh-view-heading h2 { overflow: hidden; max-width: 55vw; margin: 0; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.mesh-view-heading small { color: var(--muted); font-size: 10px; white-space: nowrap; }
+.mesh-stage { position: relative; min-height: 590px; background: #e8e7e1; }
+.mesh-viewer { position: absolute; inset: 0; }
+.mesh-viewer canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.mesh-empty { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; padding: 32px; text-align: center; }
+.mesh-empty h2 { margin: 22px 0 7px; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: 23px; }
+.mesh-empty p { margin: 0 0 22px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.mesh-cube { position: relative; width: 72px; height: 72px; transform: rotate(-8deg); }
+.mesh-cube i { position: absolute; display: block; border: 2px solid var(--green); background: rgba(8,119,95,.06); }
+.mesh-cube i:nth-child(1) { inset: 12px 10px 10px 12px; transform: skewY(30deg); }
+.mesh-cube i:nth-child(2) { width: 48px; height: 23px; top: 0; left: 20px; transform: skewY(-30deg); }
+.mesh-cube i:nth-child(3) { width: 20px; height: 48px; top: 18px; right: -1px; transform: skewY(-30deg); }
+.mesh-status { display: flex; min-height: 47px; align-items: center; gap: 9px; margin: 0; border-top: 1px solid var(--line); padding: 11px 17px; background: white; color: #4f5c59; font-size: 11px; line-height: 1.5; }
+.mesh-status span { color: var(--green); font-size: 8px; }
+.mesh-controls { display: grid; gap: 12px; }
+.mesh-result { overflow: hidden; border-color: #bfdcd1; border-radius: 21px; background: linear-gradient(145deg, #f8fffb, #e3f3ec); padding: 20px; }
+.mesh-result > p { margin: 0; color: var(--green); font-size: 10px; font-weight: 850; letter-spacing: .13em; }
+.mesh-result > div:nth-of-type(1) { display: flex; align-items: baseline; gap: 7px; margin: 3px 0 5px; color: var(--green-dark); }
+.mesh-result strong { font-family: Georgia, "Times New Roman", serif; font-size: clamp(43px, 6vw, 62px); font-weight: 500; line-height: 1; }
+.mesh-result > div > span { font-size: 14px; font-weight: 850; }
+.mesh-result > small { display: block; margin-top: 4px; color: #677773; font-size: 10px; line-height: 1.5; }
+.mesh-result.warning { border-color: #e0c98e; background: linear-gradient(145deg, #fffdf7, #fbf1d8); }
+.mesh-result.invalid { border-color: #d7d7cf; background: #f4f4ef; }
+.mesh-quality { display: flex; align-items: center; gap: 8px; margin-top: 14px; border-top: 1px solid rgba(8,119,95,.14); padding-top: 12px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+.mesh-quality i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #23b384; box-shadow: 0 0 0 4px rgba(35,179,132,.12); }
+.mesh-result.warning .mesh-quality { color: #7c5a0b; }
+.mesh-result.warning .mesh-quality i { background: var(--gold); box-shadow: 0 0 0 4px rgba(246,184,65,.15); }
+.mesh-result.invalid .mesh-quality { color: #737976; }
+.mesh-result.invalid .mesh-quality i { background: #aeb5b2; box-shadow: none; }
+.mesh-control-card { border-radius: 19px; padding: 17px; box-shadow: 0 9px 25px rgba(36,48,44,.05); }
+.mesh-control-title { display: flex; align-items: center; gap: 11px; }
+.mesh-control-title > span { display: grid; width: 28px; height: 28px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 11px; font-weight: 850; }
+.mesh-control-title p { margin: 0 0 1px; color: var(--green); font-size: 8px; font-weight: 850; letter-spacing: .13em; }
+.mesh-control-title h2 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: 17px; }
+.mesh-control-copy { margin: 12px 0 13px; color: var(--muted); font-size: 10px; line-height: 1.65; }
+.mesh-range-control { display: block; margin-top: 11px; }
+.mesh-range-control > span { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 10px; }
+.mesh-range-control b { font-weight: 750; }
+.mesh-range-control output { color: var(--green-dark); font-variant-numeric: tabular-nums; font-weight: 800; }
+.mesh-range-control input { width: 100%; margin: 7px 0 0; accent-color: var(--green); }
+.mesh-reset { width: 100%; min-height: 39px; margin-top: 14px; font-size: 11px; }
+.mesh-number-field { display: block; margin-top: 14px; }
+.mesh-number-field > span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 10px; font-weight: 750; }
+.mesh-number-field div { display: flex; overflow: hidden; border: 1px solid #cccec7; border-radius: 10px; background: white; }
+.mesh-number-field input { min-width: 0; flex: 1; border: 0; outline: 0; padding: 10px 11px; background: transparent; font-size: 14px; font-weight: 750; }
+.mesh-number-field b { padding: 10px 11px; color: var(--muted); font-size: 11px; }
+.mesh-guide ol { display: grid; gap: 11px; margin: 15px 0 0; padding-left: 21px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.mesh-privacy { margin: 2px 8px; color: #6f7774; font-size: 10px; line-height: 1.65; }
+.mesh-privacy b { color: var(--green-dark); }
+.mesh-method-note { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 18px; border-radius: 18px; padding: 18px 20px; box-shadow: none; }
+.mesh-method-note div { display: grid; gap: 5px; border-right: 1px solid var(--line); padding: 0 19px; }
+.mesh-method-note div:first-child { padding-left: 0; }
+.mesh-method-note div:last-child { border-right: 0; padding-right: 0; }
+.mesh-method-note b { color: var(--green-dark); font-size: 10px; }
+.mesh-method-note span { color: var(--muted); font-size: 10px; line-height: 1.6; }
+
 .workflow { position: relative; display: flex; width: min(490px, 86%); justify-content: space-between; margin: 25px auto 20px; }
 .workflow::before { position: absolute; top: 14px; right: 10%; left: 10%; height: 1px; background: #cbc9c1; content: ""; }
 .workflow-step { position: relative; z-index: 1; display: grid; min-width: 52px; justify-items: center; gap: 4px; color: #8b918e; }
@@ -182,6 +251,21 @@ footer { padding: 17px 10px 0; color: #7d8481; font-size: 9px; text-align: cente
   .volume-action { width: 100%; }
   .volume-steps { grid-template-columns: 1fr; }
   .volume-notice { grid-template-columns: 1fr; gap: 20px; }
+  .mesh-shell { padding: max(16px, env(safe-area-inset-top)) 12px calc(28px + env(safe-area-inset-bottom)); }
+  .mesh-heading { align-items: stretch; flex-direction: column; margin-top: 24px; }
+  .mesh-heading h1 { font-size: 31px; }
+  .mesh-file-button { width: 100%; }
+  .mesh-workspace { grid-template-columns: 1fr; }
+  .mesh-view-card { border-radius: 20px; }
+  .mesh-view-heading { min-height: 59px; padding: 11px 13px; }
+  .mesh-view-heading h2 { max-width: 57vw; font-size: 12px; }
+  .mesh-view-heading small { font-size: 8px; }
+  .mesh-stage { min-height: 54vh; }
+  .mesh-status { padding: 10px 13px; }
+  .mesh-result, .mesh-control-card { border-radius: 17px; }
+  .mesh-method-note { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+  .mesh-method-note div, .mesh-method-note div:first-child, .mesh-method-note div:last-child { border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 13px; }
+  .mesh-method-note div:last-child { border-bottom: 0; padding-bottom: 0; }
   .workflow { width: 92%; margin: 20px auto 15px; }
   .workspace-grid { grid-template-columns: 1fr; }
   .image-panel { border-radius: 19px; }
