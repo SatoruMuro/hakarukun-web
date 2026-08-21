@@ -18,6 +18,21 @@ iPhone のカメラまたは写真ライブラリから画像を読み込み、�
 
 写真と測定データはブラウザ内で処理され、サーバーには送信されません。測定値は参考値であり、精密測定、診断、安全性・品質などの重要な判断には使用しないでください。
 
+## 体積ハカルくん（Google Colab試作版）
+
+iPhoneで対象物の周囲を撮影した動画から、複数方向の輪郭を使って3D形状と体積（cm³ / mL）を推定する試作版も収録しています。専用の3D復元サーバーや有料契約は不要で、Google Colabの無料実行枠から試せます。無料枠の使用上限と実行環境の提供状況は変動し、保証されません。
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SatoruMuro/hakarukun-web/blob/main/colab/volume_hakarukun_colab.ipynb)
+
+- [体積ハカルくんの案内ページ](https://satorumuro.github.io/hakarukun-web/volume/)
+- [A4マーカーボードPDF](https://satorumuro.github.io/hakarukun-web/volume/volume-marker-board-a4.pdf)
+- Notebook: `colab/volume_hakarukun_colab.ipynb`
+- 計算モジュール: `colab/volume_pipeline.py`
+
+マーカーボードをA4・100%で印刷し、対象物を中央に置いて斜め上から一周撮影します。Notebookを上から実行すると、推定体積、3Dプレビュー、GLB・STLモデルが得られます。動画は処理のためGoogle Colabの一時実行環境へアップロードされます。
+
+この方式は複数方向の輪郭を重ねる視体積法です。見えない凹みは埋まった形となり、真の体積より大きく推定される場合があります。静止した不透明な小物で試し、既知体積の箱や円柱を使って誤差を評価してください。
+
 ## ローカル実行
 
 Node.js 22 以降が必要です。

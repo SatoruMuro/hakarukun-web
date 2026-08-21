@@ -680,7 +680,10 @@ export default function Home() {
             <h1>面積ハカルくん</h1>
           </div>
         </div>
-        <span className="local-badge"><i aria-hidden="true" /> 写真は端末内で処理</span>
+        <div className="topbar-actions">
+          <span className="local-badge"><i aria-hidden="true" /> 写真は端末内で処理</span>
+          <a className="volume-link" href="./volume/">動画から体積を測る <span aria-hidden="true">→</span></a>
+        </div>
       </header>
 
       <section className="workflow" aria-label="測定手順">
