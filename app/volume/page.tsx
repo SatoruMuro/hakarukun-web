@@ -27,7 +27,7 @@ export default function VolumePage() {
             <p>OUTPUT</p>
             <strong>cm³ <span>= mL</span></strong>
           </div>
-          <small>体積の数値、3Dプレビュー、GLB・STLモデルを出力します。</small>
+          <small>体積、推定外形寸法、高さ別断面積、3Dモデルを出力します。</small>
         </div>
       </section>
 
@@ -49,8 +49,8 @@ export default function VolumePage() {
           </article>
           <article className="volume-step-card">
             <span>3</span>
-            <h3>Colabで順番に実行</h3>
-            <p>動画を選び、セルを上から実行します。輪郭を確認後、体積と3Dモデルをダウンロードできます。</p>
+            <h3>輪郭を確認して計算</h3>
+            <p>番号付きの緑色マスクを確認し、不良フレームを除外してから体積と3Dモデルを計算します。</p>
           </article>
         </div>
       </section>
@@ -64,6 +64,7 @@ export default function VolumePage() {
           <h2>試作版の制限</h2>
           <ul>
             <li>静止した不透明な小物を対象にしています。</li>
+            <li>明らかな不良マスクは自動除外しますが、計算前に目視確認が必要です。</li>
             <li>見えない凹みは埋まった形になり、体積を大きく推定する場合があります。</li>
             <li>精密測定や診断、安全性・品質の判断には使用できません。</li>
           </ul>
