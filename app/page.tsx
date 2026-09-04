@@ -166,7 +166,7 @@ export default function Home() {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [mode, setMode] = useState<InteractionMode>(null);
   const [calibrationPoints, setCalibrationPoints] = useState<Point[]>([]);
-  const [realLengthMm, setRealLengthMm] = useState(25);
+  const [realLengthMm, setRealLengthMm] = useState(20);
   const [selectionRect, setSelectionRect] = useState<Rect | null>(null);
   const [selectionKind, setSelectionKind] = useState<"crop" | "roi" | null>(null);
   const [status, setStatus] = useState("写真を撮影するか、ライブラリから選択してください。");
